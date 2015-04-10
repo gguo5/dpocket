@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/04/2015 10:20:23 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="dpocket.entity.Shippment" table="shippment" catalog="daigou">
+        <id name="shippmentId" type="java.lang.Short">
+            <column name="shippment_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="logistics" class="dpocket.entity.Logistics" fetch="select">
+            <column name="company_id" not-null="true" />
+        </many-to-one>
+        <property name="trackNumber" type="string">
+            <column name="track_number" length="45" not-null="true" />
+        </property>
+        <property name="postage" type="big_decimal">
+            <column name="postage" precision="5" not-null="true" />
+        </property>
+        <property name="shippedDate" type="timestamp">
+            <column name="shipped_date" length="19" not-null="true" />
+        </property>
+        <property name="signedoffDate" type="timestamp">
+            <column name="signedoff_date" length="19" />
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" />
+        </property>
+        <set name="shippmentOrders" inverse="true">
+            <key>
+                <column name="shippment_id" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="dpocket.entity.ShippmentOrder" />
+        </set>
+    </class>
+</hibernate-mapping>

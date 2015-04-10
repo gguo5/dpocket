@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/04/2015 10:20:23 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="dpocket.entity.Procurement" table="procurement" catalog="daigou">
+        <id name="procurementId" type="java.lang.Short">
+            <column name="procurement_id" />
+            <generator class="identity" />
+        </id>
+        <property name="procurementDate" type="timestamp">
+            <column name="procurement_date" length="19" not-null="true" />
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" not-null="true" />
+        </property>
+        <set name="productProcurements" inverse="true">
+            <key>
+                <column name="procurement_id" not-null="true" />
+            </key>
+            <one-to-many class="dpocket.entity.ProductProcurement" />
+        </set>
+    </class>
+</hibernate-mapping>

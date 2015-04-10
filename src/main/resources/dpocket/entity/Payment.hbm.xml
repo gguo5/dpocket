@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/04/2015 10:20:23 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="dpocket.entity.Payment" table="payment" catalog="daigou">
+        <composite-id name="id" class="dpocket.entity.PaymentId">
+            <key-property name="orderId" type="int">
+                <column name="order_id" />
+            </key-property>
+            <key-property name="paymentOrdinal" type="short">
+                <column name="payment_ordinal" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="order" class="dpocket.entity.Order" update="false" insert="false" fetch="select">
+            <column name="order_id" not-null="true" />
+        </many-to-one>
+        <property name="amount" type="big_decimal">
+            <column name="amount" precision="8" not-null="true" />
+        </property>
+        <property name="paymentDate" type="timestamp">
+            <column name="payment_date" length="19" />
+        </property>
+        <property name="paymentMethod" type="string">
+            <column name="payment_method" length="45" />
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/04/2015 10:20:23 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="dpocket.entity.City" table="city" catalog="daigou">
+        <id name="cityId" type="java.lang.Short">
+            <column name="city_id" />
+            <generator class="identity" />
+        </id>
+        <property name="parentId" type="short">
+            <column name="parent_id" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="50" not-null="true" />
+        </property>
+        <property name="type" type="boolean">
+            <column name="type" not-null="true" />
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" not-null="true" />
+        </property>
+        <set name="addressesForSuburbId" inverse="true">
+            <key>
+                <column name="suburb_id" not-null="true" />
+            </key>
+            <one-to-many class="dpocket.entity.Address" />
+        </set>
+        <set name="addressesForCityId" inverse="true">
+            <key>
+                <column name="city_id" not-null="true" />
+            </key>
+            <one-to-many class="dpocket.entity.Address" />
+        </set>
+        <set name="addressesForProvinceId" inverse="true">
+            <key>
+                <column name="province_id" not-null="true" />
+            </key>
+            <one-to-many class="dpocket.entity.Address" />
+        </set>
+    </class>
+</hibernate-mapping>

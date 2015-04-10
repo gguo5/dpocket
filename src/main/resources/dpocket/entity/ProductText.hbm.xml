@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/04/2015 10:20:23 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="dpocket.entity.ProductText" table="product_text" catalog="daigou">
+        <id name="productId" type="short">
+            <column name="product_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="productName" type="string">
+            <column name="product_name" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>

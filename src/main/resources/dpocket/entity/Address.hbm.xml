@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/04/2015 10:20:23 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="dpocket.entity.Address" table="address" catalog="daigou">
+        <composite-id name="id" class="dpocket.entity.AddressId">
+            <key-property name="customerId" type="short">
+                <column name="customer_id" />
+            </key-property>
+            <key-property name="addressOrdinal" type="short">
+                <column name="address_ordinal" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="cityBySuburbId" class="dpocket.entity.City" fetch="select">
+            <column name="suburb_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cityByProvinceId" class="dpocket.entity.City" fetch="select">
+            <column name="province_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="customer" class="dpocket.entity.Customer" update="false" insert="false" fetch="select">
+            <column name="customer_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cityByCityId" class="dpocket.entity.City" fetch="select">
+            <column name="city_id" not-null="true" />
+        </many-to-one>
+        <property name="address" type="string">
+            <column name="address" length="50" not-null="true" />
+        </property>
+        <property name="address2" type="string">
+            <column name="address2" length="50" />
+        </property>
+        <property name="postcode" type="string">
+            <column name="postcode" length="10" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="20" not-null="true" />
+        </property>
+        <property name="active" type="boolean">
+            <column name="active" not-null="true" />
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

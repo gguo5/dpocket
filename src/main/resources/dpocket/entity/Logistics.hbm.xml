@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/04/2015 10:20:23 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="dpocket.entity.Logistics" table="logistics" catalog="daigou">
+        <id name="companyId" type="java.lang.Short">
+            <column name="company_id" />
+            <generator class="identity" />
+        </id>
+        <property name="companyName" type="string">
+            <column name="company_name" length="45" not-null="true" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="45" />
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" />
+        </property>
+        <set name="shippments" inverse="true">
+            <key>
+                <column name="company_id" not-null="true" />
+            </key>
+            <one-to-many class="dpocket.entity.Shippment" />
+        </set>
+    </class>
+</hibernate-mapping>

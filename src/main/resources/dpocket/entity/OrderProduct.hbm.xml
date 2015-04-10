@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/04/2015 10:20:23 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="dpocket.entity.OrderProduct" table="order_product" catalog="daigou">
+        <composite-id name="id" class="dpocket.entity.OrderProductId">
+            <key-property name="orderId" type="int">
+                <column name="order_id" />
+            </key-property>
+            <key-property name="productId" type="short">
+                <column name="product_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="product" class="dpocket.entity.Product" update="false" insert="false" fetch="select">
+            <column name="product_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="order" class="dpocket.entity.Order" update="false" insert="false" fetch="select">
+            <column name="order_id" not-null="true" />
+        </many-to-one>
+        <property name="quantity" type="java.lang.Short">
+            <column name="quantity" />
+        </property>
+        <property name="unitPrice" type="big_decimal">
+            <column name="unit_price" precision="8">
+                <comment>unit_price in RMB</comment>
+            </column>
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

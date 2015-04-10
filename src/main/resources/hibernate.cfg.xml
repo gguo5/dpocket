@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/daigou?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
+    <mapping resource="dpocket/entity/City.hbm.xml"/>
+    <mapping resource="dpocket/entity/Address.hbm.xml"/>
+    <mapping resource="dpocket/entity/Category.hbm.xml"/>
+    <mapping resource="dpocket/entity/Payment.hbm.xml"/>
+    <mapping resource="dpocket/entity/ProductProcurement.hbm.xml"/>
+    <mapping resource="dpocket/entity/Order.hbm.xml"/>
+    <mapping resource="dpocket/entity/OrderProduct.hbm.xml"/>
+    <mapping resource="dpocket/entity/Shippment.hbm.xml"/>
+    <mapping resource="dpocket/entity/Card.hbm.xml"/>
+    <mapping resource="dpocket/entity/ProductText.hbm.xml"/>
+    <mapping resource="dpocket/entity/ShippmentOrder.hbm.xml"/>
+    <mapping resource="dpocket/entity/Logistics.hbm.xml"/>
+    <mapping resource="dpocket/entity/Procurement.hbm.xml"/>
+    <mapping resource="dpocket/entity/Product.hbm.xml"/>
+    <mapping resource="dpocket/entity/Customer.hbm.xml"/>
+    <mapping resource="dpocket/entity/vw_open_order.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>
