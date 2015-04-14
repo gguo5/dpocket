@@ -1,5 +1,5 @@
 package dpocket.entity;
-// Generated 10/04/2015 10:20:21 PM by Hibernate Tools 3.2.1.GA
+// Generated 14/04/2015 11:11:08 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.math.BigDecimal;
