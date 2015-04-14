@@ -23,6 +23,6 @@
     <mapping resource="dpocket/entity/Procurement.hbm.xml"/>
     <mapping resource="dpocket/entity/Product.hbm.xml"/>
     <mapping resource="dpocket/entity/Customer.hbm.xml"/>
-    <mapping resource="dpocket/entity/vw_open_order.hbm.xml"/>
+    <mapping resource="dpocket/entity/VOpenOrder.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
