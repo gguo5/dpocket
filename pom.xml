@@ -55,14 +55,16 @@
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate</artifactId>
-            <version>3.2.5.ga</version>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.3.6.Final</version>
         </dependency>
+
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>3.3.2.GA</version>
+            <version>4.3.6.Final</version>
         </dependency>
+
         <dependency>
             <groupId>javax.sql</groupId>
             <artifactId>jdbc-stdext</artifactId>
@@ -76,7 +78,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>ejb3-persistence</artifactId>
-            <version>1.0.1.GA</version>
+            <version>1.0.2.GA</version>
         </dependency>    
         <dependency>
             <groupId>mysql</groupId>

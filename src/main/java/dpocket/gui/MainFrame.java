@@ -4,17 +4,30 @@
  */
 package dpocket.gui;
 
+import dpocket.util.HibernateUtil;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import dpocket.entity.*;
+import org.apache.log4j.Logger;
+
 /**
  *
  * @author Grant
  */
 public class MainFrame extends javax.swing.JFrame {
 
+    final static Logger logger = Logger.getLogger(MainFrame.class.getName());
+
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
+
     }
 
     /**
@@ -46,6 +59,11 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbl_OpenOrder);
 
         btn_refresh.setText("Refresh");
+        btn_refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_refreshActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,6 +88,13 @@ public class MainFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshActionPerformed
+        // TODO add your handling code here:
+        populateOpenOrder();
+        logger.info("btn clicked.");
+
+    }//GEN-LAST:event_btn_refreshActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,4 +135,53 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_OpenOrder;
     // End of variables declaration//GEN-END:variables
+
+    private static String QUERY_VW_OPEN_ORDER = "from VOpenOrder";
+
+    private void populateOpenOrder() {
+        executeHQLQuery(QUERY_VW_OPEN_ORDER);
+
+    }
+
+    private void executeHQLQuery(String hql) {
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Query q = session.createQuery(hql);
+            List resultList = q.list();
+            displayResult(resultList);
+            session.getTransaction().commit();
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+    }
+
+    private void displayResult(List resultList) {
+        Vector<String> tableHeaders = new Vector<String>();
+        Vector tableData = new Vector();
+
+        tableHeaders.add("Order Date");
+        tableHeaders.add("Order Id");
+        tableHeaders.add("Customer Name");
+        tableHeaders.add("Amount");
+        tableHeaders.add("Tracking No");
+        tableHeaders.add("Company");
+        tableHeaders.add("Shipped Date");
+
+        for (Object o : resultList) {
+            VOpenOrder voo = (VOpenOrder) o;
+            VOpenOrderId vooid = voo.getId();
+            Vector<Object> oneRow = new Vector<Object>();
+            oneRow.add(vooid.getOrderDate());
+            oneRow.add(vooid.getOrderId());
+            oneRow.add(vooid.getName());
+            oneRow.add(vooid.getAmount());
+            oneRow.add(vooid.getTrackNumber());
+            oneRow.add(vooid.getCompanyName());
+            oneRow.add(vooid.getShippedDate());
+            tableData.add(oneRow);
+        }
+        tbl_OpenOrder.setModel(new DefaultTableModel(tableData, tableHeaders));
+
+    }
 }
