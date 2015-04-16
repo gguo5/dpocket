@@ -12,6 +12,10 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import dpocket.entity.*;
+import java.awt.Cursor;
+import javax.swing.JLabel;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import org.apache.log4j.Logger;
 
 /**
@@ -42,6 +46,8 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_OpenOrder = new javax.swing.JTable();
         btn_refresh = new javax.swing.JButton();
+        jToolBar1 = new javax.swing.JToolBar();
+        lbl_btn_cust = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +71,22 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jToolBar1.setRollover(true);
+
+        lbl_btn_cust.setIcon(new javax.swing.ImageIcon("C:\\Users\\gguo\\Documents\\NetBeansProjects\\DPocket\\src\\main\\resources\\dpocket\\icons\\customers.png")); // NOI18N
+        lbl_btn_cust.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_btn_custMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lbl_btn_custMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lbl_btn_custMouseExited(evt);
+            }
+        });
+        jToolBar1.add(lbl_btn_cust);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -72,14 +94,17 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_refresh)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_refresh)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -94,6 +119,25 @@ public class MainFrame extends javax.swing.JFrame {
         populateOpenOrder();
 
     }//GEN-LAST:event_btn_refreshActionPerformed
+
+    private void lbl_btn_custMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_btn_custMouseClicked
+        // TODO add your handling code here:
+        new CustomerFrame().setVisible(true);
+    }//GEN-LAST:event_lbl_btn_custMouseClicked
+
+    private void lbl_btn_custMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_btn_custMouseEntered
+        // TODO add your handling code here:
+        JLabel cust_lbl = (JLabel) evt.getComponent();
+        cust_lbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        cust_lbl.setBorder(LineBorder.createGrayLineBorder());
+    }//GEN-LAST:event_lbl_btn_custMouseEntered
+
+    private void lbl_btn_custMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_btn_custMouseExited
+        // TODO add your handling code here:
+        JLabel cust_lbl = (JLabel) evt.getComponent();
+        cust_lbl.setCursor(Cursor.getDefaultCursor());
+        cust_lbl.setBorder(null);
+    }//GEN-LAST:event_lbl_btn_custMouseExited
 
     /**
      * @param args the command line arguments
@@ -132,6 +176,8 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_refresh;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JLabel lbl_btn_cust;
     private javax.swing.JTable tbl_OpenOrder;
     // End of variables declaration//GEN-END:variables
 
