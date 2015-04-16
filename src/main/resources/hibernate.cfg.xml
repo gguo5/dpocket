@@ -24,5 +24,6 @@
     <mapping resource="dpocket/entity/Product.hbm.xml"/>
     <mapping resource="dpocket/entity/Customer.hbm.xml"/>
     <mapping resource="dpocket/entity/VOpenOrder.hbm.xml"/>
+    <mapping resource="dpocket/entity/VCustomerList.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

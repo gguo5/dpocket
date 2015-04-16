@@ -31,6 +31,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         tbl_cust = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Customer Manager");
 
         tbl_cust.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -63,6 +64,7 @@ public class CustomerFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
 

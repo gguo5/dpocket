@@ -13,6 +13,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import dpocket.entity.*;
 import java.awt.Cursor;
+import java.io.File;
+import java.net.URL;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -54,6 +56,7 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Dora Pocket Management System");
 
         tbl_OpenOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -149,6 +152,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshActionPerformed
