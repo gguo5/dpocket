@@ -27,7 +27,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-
+        populateOpenOrder();
     }
 
     /**
@@ -92,7 +92,6 @@ public class MainFrame extends javax.swing.JFrame {
     private void btn_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshActionPerformed
         // TODO add your handling code here:
         populateOpenOrder();
-        logger.info("btn clicked.");
 
     }//GEN-LAST:event_btn_refreshActionPerformed
 
