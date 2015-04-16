@@ -17,8 +17,11 @@
         <property name="backPicture" type="binary">
             <column name="back_picture" />
         </property>
-        <property name="filePath" type="string">
-            <column name="file_path" />
+        <property name="filePathFront" type="string">
+            <column name="file_path_front" />
+        </property>
+        <property name="filePathBack" type="string">
+            <column name="file_path_back" />
         </property>
         <set name="customers" inverse="true">
             <key>

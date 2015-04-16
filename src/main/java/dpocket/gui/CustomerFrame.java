@@ -5,6 +5,16 @@
  */
 package dpocket.gui;
 
+import dpocket.entity.VCustomerList;
+import dpocket.entity.VCustomerListId;
+import dpocket.util.HibernateUtil;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+
 /**
  *
  * @author gguo
@@ -16,6 +26,7 @@ public class CustomerFrame extends javax.swing.JFrame {
      */
     public CustomerFrame() {
         initComponents();
+        populateCustomerList();
     }
 
     /**
@@ -50,17 +61,17 @@ public class CustomerFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(262, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         pack();
@@ -72,4 +83,63 @@ public class CustomerFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_cust;
     // End of variables declaration//GEN-END:variables
+
+    private static String QUERY_VW_Customer_List = "from VCustomerList";
+
+    private void populateCustomerList() {
+
+        executeHQLQuery(QUERY_VW_Customer_List);
+
+    }
+
+    private void executeHQLQuery(String hql) {
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Query q = session.createQuery(hql);
+            List resultList = q.list();
+            displayResult(resultList);
+            session.getTransaction().commit();
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+    }
+
+    private void displayResult(List resultList) {
+        Vector<String> tableHeaders = new Vector<String>();
+        Vector tableData = new Vector();
+
+        tableHeaders.add("cust_id");
+        tableHeaders.add("Customer Name");
+        tableHeaders.add("Phone");
+        tableHeaders.add("Province");
+        tableHeaders.add("City");
+        tableHeaders.add("Suburb");
+        tableHeaders.add("Address");
+        tableHeaders.add("Postcode");
+        tableHeaders.add("Email");
+        tableHeaders.add("Card No");
+        tableHeaders.add("Front");
+        tableHeaders.add("Back");
+
+        for (Object o : resultList) {
+            VCustomerList vcl = (VCustomerList) o;
+            VCustomerListId vclId = vcl.getId();
+            Vector<Object> oneRow = new Vector<Object>();
+            oneRow.add(vclId.getCustomerId());
+            oneRow.add(vclId.getCustomerName());
+            oneRow.add(vclId.getPhone());
+            oneRow.add(vclId.getProvince());
+            oneRow.add(vclId.getCity());
+            oneRow.add(vclId.getSuburb());
+            oneRow.add(vclId.getAddress());
+            oneRow.add(vclId.getPostcode());
+            oneRow.add(vclId.getEmail());
+            oneRow.add(vclId.getFilePathFront());
+            oneRow.add(vclId.getFilePathBack());
+            tableData.add(oneRow);
+        }
+        tbl_cust.setModel(new DefaultTableModel(tableData, tableHeaders));
+
+    }
 }

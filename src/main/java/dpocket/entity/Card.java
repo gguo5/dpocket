@@ -15,7 +15,8 @@ public class Card  implements java.io.Serializable {
      private String cardNumber;
      private byte[] frontPicture;
      private byte[] backPicture;
-     private String filePath;
+     private String filePathFront;
+     private String filePathBack;
      private Set customers = new HashSet(0);
 
     public Card() {
@@ -25,11 +26,12 @@ public class Card  implements java.io.Serializable {
     public Card(String cardNumber) {
         this.cardNumber = cardNumber;
     }
-    public Card(String cardNumber, byte[] frontPicture, byte[] backPicture, String filePath, Set customers) {
+    public Card(String cardNumber, byte[] frontPicture, byte[] backPicture, String filePathFront,String filePathBack, Set customers) {
        this.cardNumber = cardNumber;
        this.frontPicture = frontPicture;
        this.backPicture = backPicture;
-       this.filePath = filePath;
+       this.filePathFront = filePathFront;
+       this.filePathBack = filePathBack;
        this.customers = customers;
     }
    
@@ -61,13 +63,23 @@ public class Card  implements java.io.Serializable {
     public void setBackPicture(byte[] backPicture) {
         this.backPicture = backPicture;
     }
-    public String getFilePath() {
-        return this.filePath;
+
+    public String getFilePathFront() {
+        return filePathFront;
     }
-    
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+
+    public void setFilePathFront(String filePathFront) {
+        this.filePathFront = filePathFront;
     }
+
+    public String getFilePathBack() {
+        return filePathBack;
+    }
+
+    public void setFilePathBack(String filePathBack) {
+        this.filePathBack = filePathBack;
+    }
+  
     public Set getCustomers() {
         return this.customers;
     }

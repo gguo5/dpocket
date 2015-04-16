@@ -5,21 +5,21 @@ package dpocket.entity;
  */
 public class VCustomerList implements java.io.Serializable {
 
-    private VOpenOrderId id;
+    private VCustomerListId id;
 
     public VCustomerList() {
     }
 
-    public VCustomerList(VOpenOrderId id) {
+    public VCustomerList(VCustomerListId id) {
         this.id = id;
 
     }
 
-    public VOpenOrderId getId() {
+    public VCustomerListId getId() {
         return id;
     }
 
-    public void setId(VOpenOrderId id) {
+    public void setId(VCustomerListId id) {
         this.id = id;
     }
 

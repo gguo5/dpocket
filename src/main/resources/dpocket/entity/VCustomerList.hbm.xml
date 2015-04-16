@@ -4,10 +4,10 @@
   <class name="dpocket.entity.VCustomerList" table="vw_customer_list" catalog="daigou">  
         <composite-id name="id" class="dpocket.entity.VCustomerListId">  
             <key-property name="customerId" type="java.lang.Short">  
-                 <column name="customerId" />
+                 <column name="id" />
             </key-property>  
             <key-property name="customerName" type="java.lang.String">  
-                <column name="customerName" />  
+                <column name="name" />  
             </key-property>  
             <key-property name="phone" type="java.lang.String">  
                 <column name="phone" />  
@@ -28,13 +28,13 @@
                 <column name="postcode" />  
             </key-property>  
             <key-property name="cardNumber" type="java.lang.String">  
-                <column name="cardNumber" />  
+                <column name="card" />  
             </key-property>  
             <key-property name="filePathFront" type="java.lang.String">  
-                <column name="filePathFront" />  
+                <column name="file_path_front" />  
             </key-property>  
             <key-property name="filePathBack" type="java.lang.String">  
-                <column name="filePathBack" />  
+                <column name="file_path_back" />  
             </key-property>  
             <key-property name="email" type="java.lang.String">  
                 <column name="email" />  
