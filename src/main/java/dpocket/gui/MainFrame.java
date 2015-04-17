@@ -78,7 +78,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        lbl_btn_cust.setIcon(new javax.swing.ImageIcon("G:\\netbeans\\dpocket\\src\\main\\resources\\dpocket\\icons\\customers.png")); // NOI18N
+        lbl_btn_cust.setIcon(new javax.swing.ImageIcon("C:\\Users\\gguo\\Documents\\NetBeansProjects\\DPocket\\src\\main\\resources\\dpocket\\icons\\customers.png")); // NOI18N
         lbl_btn_cust.setText("Customers");
         lbl_btn_cust.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
