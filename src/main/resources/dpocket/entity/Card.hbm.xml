@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/04/2015 11:11:08 PM by Hibernate Tools 3.2.1.GA -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/07/2015 2:16:48 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="dpocket.entity.Card" table="card" catalog="daigou">
+    <class name="dpocket.entity.Card" table="card" catalog="daigou" optimistic-lock="version">
         <id name="cardId" type="java.lang.Short">
             <column name="card_id" />
             <generator class="identity" />
         </id>
+        <many-to-one name="customer" class="dpocket.entity.Customer" fetch="select">
+            <column name="customer_id" not-null="true" unique="true" />
+        </many-to-one>
         <property name="cardNumber" type="string">
             <column name="card_number" length="45" not-null="true" />
         </property>
@@ -23,11 +26,8 @@
         <property name="filePathBack" type="string">
             <column name="file_path_back" />
         </property>
-        <set name="customers" inverse="true">
-            <key>
-                <column name="card_id" not-null="true" />
-            </key>
-            <one-to-many class="dpocket.entity.Customer" />
-        </set>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>

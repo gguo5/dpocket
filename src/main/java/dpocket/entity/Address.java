@@ -1,5 +1,5 @@
 package dpocket.entity;
-// Generated 14/04/2015 11:11:08 PM by Hibernate Tools 3.2.1.GA
+// Generated 15/07/2015 2:16:48 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -11,10 +11,10 @@ public class Address  implements java.io.Serializable {
 
 
      private AddressId id;
-     private City cityBySuburbId;
      private City cityByProvinceId;
-     private Customer customer;
      private City cityByCityId;
+     private City cityBySuburbId;
+     private Customer customer;
      private String address;
      private String address2;
      private String postcode;
@@ -26,23 +26,24 @@ public class Address  implements java.io.Serializable {
     }
 
 	
-    public Address(AddressId id, City cityBySuburbId, City cityByProvinceId, Customer customer, City cityByCityId, String address, String phone, boolean active, Date lastUpdate) {
+    public Address(AddressId id, City cityByProvinceId, City cityByCityId, City cityBySuburbId, Customer customer, String address, String postcode, String phone, boolean active, Date lastUpdate) {
         this.id = id;
-        this.cityBySuburbId = cityBySuburbId;
         this.cityByProvinceId = cityByProvinceId;
-        this.customer = customer;
         this.cityByCityId = cityByCityId;
+        this.cityBySuburbId = cityBySuburbId;
+        this.customer = customer;
         this.address = address;
+        this.postcode = postcode;
         this.phone = phone;
         this.active = active;
         this.lastUpdate = lastUpdate;
     }
-    public Address(AddressId id, City cityBySuburbId, City cityByProvinceId, Customer customer, City cityByCityId, String address, String address2, String postcode, String phone, boolean active, Date lastUpdate) {
+    public Address(AddressId id, City cityByProvinceId, City cityByCityId, City cityBySuburbId, Customer customer, String address, String address2, String postcode, String phone, boolean active, Date lastUpdate) {
        this.id = id;
-       this.cityBySuburbId = cityBySuburbId;
        this.cityByProvinceId = cityByProvinceId;
-       this.customer = customer;
        this.cityByCityId = cityByCityId;
+       this.cityBySuburbId = cityBySuburbId;
+       this.customer = customer;
        this.address = address;
        this.address2 = address2;
        this.postcode = postcode;
@@ -58,13 +59,6 @@ public class Address  implements java.io.Serializable {
     public void setId(AddressId id) {
         this.id = id;
     }
-    public City getCityBySuburbId() {
-        return this.cityBySuburbId;
-    }
-    
-    public void setCityBySuburbId(City cityBySuburbId) {
-        this.cityBySuburbId = cityBySuburbId;
-    }
     public City getCityByProvinceId() {
         return this.cityByProvinceId;
     }
@@ -72,19 +66,26 @@ public class Address  implements java.io.Serializable {
     public void setCityByProvinceId(City cityByProvinceId) {
         this.cityByProvinceId = cityByProvinceId;
     }
-    public Customer getCustomer() {
-        return this.customer;
-    }
-    
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
     public City getCityByCityId() {
         return this.cityByCityId;
     }
     
     public void setCityByCityId(City cityByCityId) {
         this.cityByCityId = cityByCityId;
+    }
+    public City getCityBySuburbId() {
+        return this.cityBySuburbId;
+    }
+    
+    public void setCityBySuburbId(City cityBySuburbId) {
+        this.cityBySuburbId = cityBySuburbId;
+    }
+    public Customer getCustomer() {
+        return this.customer;
+    }
+    
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
     public String getAddress() {
         return this.address;

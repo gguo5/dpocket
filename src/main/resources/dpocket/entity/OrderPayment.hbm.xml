@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/04/2015 11:11:08 PM by Hibernate Tools 3.2.1.GA -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/07/2015 2:16:48 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="dpocket.entity.Payment" table="payment" catalog="daigou">
-        <composite-id name="id" class="dpocket.entity.PaymentId">
+    <class name="dpocket.entity.OrderPayment" table="order_payment" catalog="daigou" optimistic-lock="version">
+        <composite-id name="id" class="dpocket.entity.OrderPaymentId">
             <key-property name="orderId" type="int">
                 <column name="order_id" />
             </key-property>
@@ -19,10 +19,13 @@
             <column name="amount" precision="8" not-null="true" />
         </property>
         <property name="paymentDate" type="timestamp">
-            <column name="payment_date" length="19" />
+            <column name="payment_date" length="19" not-null="true" />
         </property>
-        <property name="paymentMethod" type="string">
-            <column name="payment_method" length="45" />
+        <property name="paymentMethodRefno" type="short">
+            <column name="payment_method_refno" not-null="true" />
+        </property>
+        <property name="archvFlag" type="char">
+            <column name="archv_flag" length="1" not-null="true" />
         </property>
         <property name="lastUpdate" type="timestamp">
             <column name="last_update" length="19" />

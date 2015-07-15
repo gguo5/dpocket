@@ -1,5 +1,5 @@
 package dpocket.entity;
-// Generated 14/04/2015 11:11:08 PM by Hibernate Tools 3.2.1.GA
+// Generated 15/07/2015 2:16:48 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,28 +14,33 @@ public class Order  implements java.io.Serializable {
 
      private Integer orderId;
      private Customer customer;
-     private Date orderDate;
+     private Date orderPlacedDate;
+     private boolean active;
+     private Date orderCompleteDate;
      private Date lastUpdate;
      private Set orderProducts = new HashSet(0);
-     private Set shippmentOrders = new HashSet(0);
-     private Set payments = new HashSet(0);
+     private Set orderPayments = new HashSet(0);
+     private Set orderShippments = new HashSet(0);
 
     public Order() {
     }
 
 	
-    public Order(Customer customer, Date orderDate, Date lastUpdate) {
+    public Order(Customer customer, Date orderPlacedDate, boolean active, Date lastUpdate) {
         this.customer = customer;
-        this.orderDate = orderDate;
+        this.orderPlacedDate = orderPlacedDate;
+        this.active = active;
         this.lastUpdate = lastUpdate;
     }
-    public Order(Customer customer, Date orderDate, Date lastUpdate, Set orderProducts, Set shippmentOrders, Set payments) {
+    public Order(Customer customer, Date orderPlacedDate, boolean active, Date orderCompleteDate, Date lastUpdate, Set orderProducts, Set orderPayments, Set orderShippments) {
        this.customer = customer;
-       this.orderDate = orderDate;
+       this.orderPlacedDate = orderPlacedDate;
+       this.active = active;
+       this.orderCompleteDate = orderCompleteDate;
        this.lastUpdate = lastUpdate;
        this.orderProducts = orderProducts;
-       this.shippmentOrders = shippmentOrders;
-       this.payments = payments;
+       this.orderPayments = orderPayments;
+       this.orderShippments = orderShippments;
     }
    
     public Integer getOrderId() {
@@ -52,12 +57,26 @@ public class Order  implements java.io.Serializable {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-    public Date getOrderDate() {
-        return this.orderDate;
+    public Date getOrderPlacedDate() {
+        return this.orderPlacedDate;
     }
     
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
+    public void setOrderPlacedDate(Date orderPlacedDate) {
+        this.orderPlacedDate = orderPlacedDate;
+    }
+    public boolean isActive() {
+        return this.active;
+    }
+    
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+    public Date getOrderCompleteDate() {
+        return this.orderCompleteDate;
+    }
+    
+    public void setOrderCompleteDate(Date orderCompleteDate) {
+        this.orderCompleteDate = orderCompleteDate;
     }
     public Date getLastUpdate() {
         return this.lastUpdate;
@@ -73,19 +92,19 @@ public class Order  implements java.io.Serializable {
     public void setOrderProducts(Set orderProducts) {
         this.orderProducts = orderProducts;
     }
-    public Set getShippmentOrders() {
-        return this.shippmentOrders;
+    public Set getOrderPayments() {
+        return this.orderPayments;
     }
     
-    public void setShippmentOrders(Set shippmentOrders) {
-        this.shippmentOrders = shippmentOrders;
+    public void setOrderPayments(Set orderPayments) {
+        this.orderPayments = orderPayments;
     }
-    public Set getPayments() {
-        return this.payments;
+    public Set getOrderShippments() {
+        return this.orderShippments;
     }
     
-    public void setPayments(Set payments) {
-        this.payments = payments;
+    public void setOrderShippments(Set orderShippments) {
+        this.orderShippments = orderShippments;
     }
 
 

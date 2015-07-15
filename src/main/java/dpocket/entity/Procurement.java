@@ -1,5 +1,5 @@
 package dpocket.entity;
-// Generated 14/04/2015 11:11:08 PM by Hibernate Tools 3.2.1.GA
+// Generated 15/07/2015 2:16:48 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,6 +14,7 @@ public class Procurement  implements java.io.Serializable {
 
      private Short procurementId;
      private Date procurementDate;
+     private char archvFlag;
      private Date lastUpdate;
      private Set productProcurements = new HashSet(0);
 
@@ -21,12 +22,14 @@ public class Procurement  implements java.io.Serializable {
     }
 
 	
-    public Procurement(Date procurementDate, Date lastUpdate) {
+    public Procurement(Date procurementDate, char archvFlag, Date lastUpdate) {
         this.procurementDate = procurementDate;
+        this.archvFlag = archvFlag;
         this.lastUpdate = lastUpdate;
     }
-    public Procurement(Date procurementDate, Date lastUpdate, Set productProcurements) {
+    public Procurement(Date procurementDate, char archvFlag, Date lastUpdate, Set productProcurements) {
        this.procurementDate = procurementDate;
+       this.archvFlag = archvFlag;
        this.lastUpdate = lastUpdate;
        this.productProcurements = productProcurements;
     }
@@ -44,6 +47,13 @@ public class Procurement  implements java.io.Serializable {
     
     public void setProcurementDate(Date procurementDate) {
         this.procurementDate = procurementDate;
+    }
+    public char getArchvFlag() {
+        return this.archvFlag;
+    }
+    
+    public void setArchvFlag(char archvFlag) {
+        this.archvFlag = archvFlag;
     }
     public Date getLastUpdate() {
         return this.lastUpdate;

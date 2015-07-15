@@ -1,5 +1,5 @@
 package dpocket.entity;
-// Generated 14/04/2015 11:11:08 PM by Hibernate Tools 3.2.1.GA
+// Generated 15/07/2015 2:16:48 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -12,8 +12,8 @@ public class ProductProcurement  implements java.io.Serializable {
 
 
      private Short id;
-     private Product product;
      private Procurement procurement;
+     private Product product;
      private short quantity;
      private BigDecimal unitPrice;
      private Date lastUpdate;
@@ -21,9 +21,9 @@ public class ProductProcurement  implements java.io.Serializable {
     public ProductProcurement() {
     }
 
-    public ProductProcurement(Product product, Procurement procurement, short quantity, BigDecimal unitPrice, Date lastUpdate) {
-       this.product = product;
+    public ProductProcurement(Procurement procurement, Product product, short quantity, BigDecimal unitPrice, Date lastUpdate) {
        this.procurement = procurement;
+       this.product = product;
        this.quantity = quantity;
        this.unitPrice = unitPrice;
        this.lastUpdate = lastUpdate;
@@ -36,19 +36,19 @@ public class ProductProcurement  implements java.io.Serializable {
     public void setId(Short id) {
         this.id = id;
     }
-    public Product getProduct() {
-        return this.product;
-    }
-    
-    public void setProduct(Product product) {
-        this.product = product;
-    }
     public Procurement getProcurement() {
         return this.procurement;
     }
     
     public void setProcurement(Procurement procurement) {
         this.procurement = procurement;
+    }
+    public Product getProduct() {
+        return this.product;
+    }
+    
+    public void setProduct(Product product) {
+        this.product = product;
     }
     public short getQuantity() {
         return this.quantity;

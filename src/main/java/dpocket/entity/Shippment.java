@@ -1,5 +1,5 @@
 package dpocket.entity;
-// Generated 14/04/2015 11:11:08 PM by Hibernate Tools 3.2.1.GA
+// Generated 15/07/2015 2:16:48 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -17,29 +17,44 @@ public class Shippment  implements java.io.Serializable {
      private Logistics logistics;
      private String trackNumber;
      private BigDecimal postage;
+     private BigDecimal weight;
      private Date shippedDate;
+     private String fromLocation;
+     private String toLocation;
+     private String status;
      private Date signedoffDate;
+     private String signedoffPerson;
+     private String notes;
+     private boolean active;
      private Date lastUpdate;
-     private Set shippmentOrders = new HashSet(0);
+     private Set orderShippments = new HashSet(0);
 
     public Shippment() {
     }
 
 	
-    public Shippment(Logistics logistics, String trackNumber, BigDecimal postage, Date shippedDate) {
+    public Shippment(Logistics logistics, String trackNumber, BigDecimal postage, Date shippedDate, boolean active) {
         this.logistics = logistics;
         this.trackNumber = trackNumber;
         this.postage = postage;
         this.shippedDate = shippedDate;
+        this.active = active;
     }
-    public Shippment(Logistics logistics, String trackNumber, BigDecimal postage, Date shippedDate, Date signedoffDate, Date lastUpdate, Set shippmentOrders) {
+    public Shippment(Logistics logistics, String trackNumber, BigDecimal postage, BigDecimal weight, Date shippedDate, String fromLocation, String toLocation, String status, Date signedoffDate, String signedoffPerson, String notes, boolean active, Date lastUpdate, Set orderShippments) {
        this.logistics = logistics;
        this.trackNumber = trackNumber;
        this.postage = postage;
+       this.weight = weight;
        this.shippedDate = shippedDate;
+       this.fromLocation = fromLocation;
+       this.toLocation = toLocation;
+       this.status = status;
        this.signedoffDate = signedoffDate;
+       this.signedoffPerson = signedoffPerson;
+       this.notes = notes;
+       this.active = active;
        this.lastUpdate = lastUpdate;
-       this.shippmentOrders = shippmentOrders;
+       this.orderShippments = orderShippments;
     }
    
     public Short getShippmentId() {
@@ -70,12 +85,40 @@ public class Shippment  implements java.io.Serializable {
     public void setPostage(BigDecimal postage) {
         this.postage = postage;
     }
+    public BigDecimal getWeight() {
+        return this.weight;
+    }
+    
+    public void setWeight(BigDecimal weight) {
+        this.weight = weight;
+    }
     public Date getShippedDate() {
         return this.shippedDate;
     }
     
     public void setShippedDate(Date shippedDate) {
         this.shippedDate = shippedDate;
+    }
+    public String getFromLocation() {
+        return this.fromLocation;
+    }
+    
+    public void setFromLocation(String fromLocation) {
+        this.fromLocation = fromLocation;
+    }
+    public String getToLocation() {
+        return this.toLocation;
+    }
+    
+    public void setToLocation(String toLocation) {
+        this.toLocation = toLocation;
+    }
+    public String getStatus() {
+        return this.status;
+    }
+    
+    public void setStatus(String status) {
+        this.status = status;
     }
     public Date getSignedoffDate() {
         return this.signedoffDate;
@@ -84,6 +127,27 @@ public class Shippment  implements java.io.Serializable {
     public void setSignedoffDate(Date signedoffDate) {
         this.signedoffDate = signedoffDate;
     }
+    public String getSignedoffPerson() {
+        return this.signedoffPerson;
+    }
+    
+    public void setSignedoffPerson(String signedoffPerson) {
+        this.signedoffPerson = signedoffPerson;
+    }
+    public String getNotes() {
+        return this.notes;
+    }
+    
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+    public boolean isActive() {
+        return this.active;
+    }
+    
+    public void setActive(boolean active) {
+        this.active = active;
+    }
     public Date getLastUpdate() {
         return this.lastUpdate;
     }
@@ -91,12 +155,12 @@ public class Shippment  implements java.io.Serializable {
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
-    public Set getShippmentOrders() {
-        return this.shippmentOrders;
+    public Set getOrderShippments() {
+        return this.orderShippments;
     }
     
-    public void setShippmentOrders(Set shippmentOrders) {
-        this.shippmentOrders = shippmentOrders;
+    public void setOrderShippments(Set orderShippments) {
+        this.orderShippments = orderShippments;
     }
 
 

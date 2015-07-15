@@ -15,6 +15,7 @@ import dpocket.entity.*;
 import java.awt.Cursor;
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -231,10 +232,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTable tbl_OpenOrder;
     // End of variables declaration//GEN-END:variables
 
-    private static String QUERY_VW_OPEN_ORDER = "from VOpenOrder";
+    private static String QUERY_TBL_TRACKING = "from Shippment as sp\n"
+            + "left join sp.orderShippments as os\n"
+            + "join fetch os.order as o\n"
+            + "left join fetch o.customer as c";
 
     private void populateOpenOrder() {
-        executeHQLQuery(QUERY_VW_OPEN_ORDER);
+        executeHQLQuery(QUERY_TBL_TRACKING);
 
     }
 
@@ -255,26 +259,37 @@ public class MainFrame extends javax.swing.JFrame {
         Vector<String> tableHeaders = new Vector<String>();
         Vector tableData = new Vector();
 
-        tableHeaders.add("Order Date");
-        tableHeaders.add("Order Id");
-        tableHeaders.add("Customer Name");
-        tableHeaders.add("Amount");
         tableHeaders.add("Tracking No");
-        tableHeaders.add("Company");
+        tableHeaders.add("Shippment Id");
         tableHeaders.add("Shipped Date");
+        tableHeaders.add("Destination");
+        tableHeaders.add("Status");
+        tableHeaders.add("Order ID");
+        tableHeaders.add("Customer Name");
+        tableHeaders.add("Customer ID");
 
         for (Object o : resultList) {
-            VOpenOrder voo = (VOpenOrder) o;
-            VOpenOrderId vooid = voo.getId();
+            Object[] objArray = (Object[]) o;
+            Shippment sp = (Shippment)objArray[0];
+            OrderShippment osp = (OrderShippment)objArray[1];
+            Order order = osp.getOrder();
+            Customer cust = order.getCustomer();
+            
             Vector<Object> oneRow = new Vector<Object>();
-            oneRow.add(vooid.getOrderDate());
-            oneRow.add(vooid.getOrderId());
-            oneRow.add(vooid.getName());
-            oneRow.add(vooid.getAmount());
-            oneRow.add(vooid.getTrackNumber());
-            oneRow.add(vooid.getCompanyName());
-            oneRow.add(vooid.getShippedDate());
+            oneRow.add(sp.getTrackNumber());
+            oneRow.add(sp.getShippmentId());
+            oneRow.add(sp.getShippedDate());
+            oneRow.add(sp.getToLocation());
+            oneRow.add(sp.getStatus());
+            oneRow.add(order.getOrderId());
+            oneRow.add(cust.getCustomerName());
+            oneRow.add(cust.getCustomerId());
             tableData.add(oneRow);
+            
+            
+            //System.out.println(pair[0]);
+            //System.out.println(pair[1] + "\n");
+
         }
         tbl_OpenOrder.setModel(new DefaultTableModel(tableData, tableHeaders));
 

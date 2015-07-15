@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/07/2015 2:16:48 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="dpocket.entity.ReferenceValues" table="reference_values" catalog="daigou" optimistic-lock="version">
+        <id name="rfvalRefno" type="java.lang.Short">
+            <column name="rfval_refno" />
+            <generator class="identity" />
+        </id>
+        <property name="rfvdmCode" type="string">
+            <column name="rfvdm_code" length="5" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="45" not-null="true" />
+        </property>
+        <property name="mainCode" type="string">
+            <column name="main_code" length="30" not-null="true" />
+        </property>
+        <property name="archvFlag" type="java.lang.Character">
+            <column name="archv_flag" length="1" />
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

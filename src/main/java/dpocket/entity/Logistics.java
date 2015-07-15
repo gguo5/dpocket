@@ -1,5 +1,5 @@
 package dpocket.entity;
-// Generated 14/04/2015 11:11:08 PM by Hibernate Tools 3.2.1.GA
+// Generated 15/07/2015 2:16:48 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,20 +15,29 @@ public class Logistics  implements java.io.Serializable {
      private Short companyId;
      private String companyName;
      private String phone;
+     private String website;
+     private String emailForIdUpload;
+     private boolean active;
      private Date lastUpdate;
+     private Set trackingApis = new HashSet(0);
      private Set shippments = new HashSet(0);
 
     public Logistics() {
     }
 
 	
-    public Logistics(String companyName) {
+    public Logistics(String companyName, boolean active) {
         this.companyName = companyName;
+        this.active = active;
     }
-    public Logistics(String companyName, String phone, Date lastUpdate, Set shippments) {
+    public Logistics(String companyName, String phone, String website, String emailForIdUpload, boolean active, Date lastUpdate, Set trackingApis, Set shippments) {
        this.companyName = companyName;
        this.phone = phone;
+       this.website = website;
+       this.emailForIdUpload = emailForIdUpload;
+       this.active = active;
        this.lastUpdate = lastUpdate;
+       this.trackingApis = trackingApis;
        this.shippments = shippments;
     }
    
@@ -53,12 +62,40 @@ public class Logistics  implements java.io.Serializable {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+    public String getWebsite() {
+        return this.website;
+    }
+    
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+    public String getEmailForIdUpload() {
+        return this.emailForIdUpload;
+    }
+    
+    public void setEmailForIdUpload(String emailForIdUpload) {
+        this.emailForIdUpload = emailForIdUpload;
+    }
+    public boolean isActive() {
+        return this.active;
+    }
+    
+    public void setActive(boolean active) {
+        this.active = active;
+    }
     public Date getLastUpdate() {
         return this.lastUpdate;
     }
     
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
+    }
+    public Set getTrackingApis() {
+        return this.trackingApis;
+    }
+    
+    public void setTrackingApis(Set trackingApis) {
+        this.trackingApis = trackingApis;
     }
     public Set getShippments() {
         return this.shippments;

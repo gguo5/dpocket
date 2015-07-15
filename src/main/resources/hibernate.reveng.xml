@@ -3,18 +3,22 @@
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="daigou"/>
   <table-filter match-name="shippment"/>
-  <table-filter match-name="customer"/>
-  <table-filter match-name="order"/>
-  <table-filter match-name="logistics"/>
-  <table-filter match-name="product_text"/>
-  <table-filter match-name="card"/>
-  <table-filter match-name="product"/>
-  <table-filter match-name="category"/>
-  <table-filter match-name="procurement"/>
   <table-filter match-name="order_product"/>
   <table-filter match-name="city"/>
-  <table-filter match-name="shippment_order"/>
-  <table-filter match-name="address"/>
-  <table-filter match-name="payment"/>
+  <table-filter match-name="reference_values_domains"/>
+  <table-filter match-name="order"/>
+  <table-filter match-name="card"/>
+  <table-filter match-name="logistics"/>
+  <table-filter match-name="tracking_api_params"/>
+  <table-filter match-name="customer"/>
+  <table-filter match-name="tracking_api"/>
   <table-filter match-name="product_procurement"/>
+  <table-filter match-name="category"/>
+  <table-filter match-name="product"/>
+  <table-filter match-name="product_text"/>
+  <table-filter match-name="order_shippment"/>
+  <table-filter match-name="reference_values"/>
+  <table-filter match-name="order_payment"/>
+  <table-filter match-name="procurement"/>
+  <table-filter match-name="address"/>
 </hibernate-reverse-engineering>

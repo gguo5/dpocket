@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/04/2015 11:11:08 PM by Hibernate Tools 3.2.1.GA -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/07/2015 2:16:48 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="dpocket.entity.City" table="city" catalog="daigou">
+    <class name="dpocket.entity.City" table="city" catalog="daigou" optimistic-lock="version">
         <id name="cityId" type="java.lang.Short">
             <column name="city_id" />
             <generator class="identity" />
@@ -20,21 +20,21 @@
         <property name="lastUpdate" type="timestamp">
             <column name="last_update" length="19" not-null="true" />
         </property>
-        <set name="addressesForSuburbId" inverse="true">
+        <set name="addressesForProvinceId" table="address" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="suburb_id" not-null="true" />
+                <column name="province_id" not-null="true" />
             </key>
             <one-to-many class="dpocket.entity.Address" />
         </set>
-        <set name="addressesForCityId" inverse="true">
+        <set name="addressesForCityId" table="address" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="city_id" not-null="true" />
             </key>
             <one-to-many class="dpocket.entity.Address" />
         </set>
-        <set name="addressesForProvinceId" inverse="true">
+        <set name="addressesForSuburbId" table="address" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="province_id" not-null="true" />
+                <column name="suburb_id" not-null="true" />
             </key>
             <one-to-many class="dpocket.entity.Address" />
         </set>

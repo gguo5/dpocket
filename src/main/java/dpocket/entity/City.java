@@ -1,5 +1,5 @@
 package dpocket.entity;
-// Generated 14/04/2015 11:11:08 PM by Hibernate Tools 3.2.1.GA
+// Generated 15/07/2015 2:16:48 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -17,9 +17,9 @@ public class City  implements java.io.Serializable {
      private String name;
      private boolean type;
      private Date lastUpdate;
-     private Set addressesForSuburbId = new HashSet(0);
-     private Set addressesForCityId = new HashSet(0);
      private Set addressesForProvinceId = new HashSet(0);
+     private Set addressesForCityId = new HashSet(0);
+     private Set addressesForSuburbId = new HashSet(0);
 
     public City() {
     }
@@ -31,14 +31,14 @@ public class City  implements java.io.Serializable {
         this.type = type;
         this.lastUpdate = lastUpdate;
     }
-    public City(short parentId, String name, boolean type, Date lastUpdate, Set addressesForSuburbId, Set addressesForCityId, Set addressesForProvinceId) {
+    public City(short parentId, String name, boolean type, Date lastUpdate, Set addressesForProvinceId, Set addressesForCityId, Set addressesForSuburbId) {
        this.parentId = parentId;
        this.name = name;
        this.type = type;
        this.lastUpdate = lastUpdate;
-       this.addressesForSuburbId = addressesForSuburbId;
-       this.addressesForCityId = addressesForCityId;
        this.addressesForProvinceId = addressesForProvinceId;
+       this.addressesForCityId = addressesForCityId;
+       this.addressesForSuburbId = addressesForSuburbId;
     }
    
     public Short getCityId() {
@@ -76,12 +76,12 @@ public class City  implements java.io.Serializable {
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
-    public Set getAddressesForSuburbId() {
-        return this.addressesForSuburbId;
+    public Set getAddressesForProvinceId() {
+        return this.addressesForProvinceId;
     }
     
-    public void setAddressesForSuburbId(Set addressesForSuburbId) {
-        this.addressesForSuburbId = addressesForSuburbId;
+    public void setAddressesForProvinceId(Set addressesForProvinceId) {
+        this.addressesForProvinceId = addressesForProvinceId;
     }
     public Set getAddressesForCityId() {
         return this.addressesForCityId;
@@ -90,12 +90,12 @@ public class City  implements java.io.Serializable {
     public void setAddressesForCityId(Set addressesForCityId) {
         this.addressesForCityId = addressesForCityId;
     }
-    public Set getAddressesForProvinceId() {
-        return this.addressesForProvinceId;
+    public Set getAddressesForSuburbId() {
+        return this.addressesForSuburbId;
     }
     
-    public void setAddressesForProvinceId(Set addressesForProvinceId) {
-        this.addressesForProvinceId = addressesForProvinceId;
+    public void setAddressesForSuburbId(Set addressesForSuburbId) {
+        this.addressesForSuburbId = addressesForSuburbId;
     }
 
 

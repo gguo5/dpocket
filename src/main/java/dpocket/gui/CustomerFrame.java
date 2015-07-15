@@ -5,8 +5,7 @@
  */
 package dpocket.gui;
 
-import dpocket.entity.VCustomerList;
-import dpocket.entity.VCustomerListId;
+
 import dpocket.util.HibernateUtil;
 import java.util.List;
 import java.util.Vector;
@@ -84,7 +83,7 @@ public class CustomerFrame extends javax.swing.JFrame {
     private javax.swing.JTable tbl_cust;
     // End of variables declaration//GEN-END:variables
 
-    private static String QUERY_VW_Customer_List = "from VCustomerList";
+    private static String QUERY_VW_Customer_List = "from Customer";
 
     private void populateCustomerList() {
 
@@ -123,21 +122,21 @@ public class CustomerFrame extends javax.swing.JFrame {
         tableHeaders.add("Back");
 
         for (Object o : resultList) {
-            VCustomerList vcl = (VCustomerList) o;
-            VCustomerListId vclId = vcl.getId();
-            Vector<Object> oneRow = new Vector<Object>();
-            oneRow.add(vclId.getCustomerId());
-            oneRow.add(vclId.getCustomerName());
-            oneRow.add(vclId.getPhone());
-            oneRow.add(vclId.getProvince());
-            oneRow.add(vclId.getCity());
-            oneRow.add(vclId.getSuburb());
-            oneRow.add(vclId.getAddress());
-            oneRow.add(vclId.getPostcode());
-            oneRow.add(vclId.getEmail());
-            oneRow.add(vclId.getFilePathFront());
-            oneRow.add(vclId.getFilePathBack());
-            tableData.add(oneRow);
+//            VCustomerList vcl = (VCustomerList) o;
+//            VCustomerListId vclId = vcl.getId();
+//            Vector<Object> oneRow = new Vector<Object>();
+//            oneRow.add(vclId.getCustomerId());
+//            oneRow.add(vclId.getCustomerName());
+//            oneRow.add(vclId.getPhone());
+//            oneRow.add(vclId.getProvince());
+//            oneRow.add(vclId.getCity());
+//            oneRow.add(vclId.getSuburb());
+//            oneRow.add(vclId.getAddress());
+//            oneRow.add(vclId.getPostcode());
+//            oneRow.add(vclId.getEmail());
+//            oneRow.add(vclId.getFilePathFront());
+//            oneRow.add(vclId.getFilePathBack());
+//            tableData.add(oneRow);
         }
         tbl_cust.setModel(new DefaultTableModel(tableData, tableHeaders));
 

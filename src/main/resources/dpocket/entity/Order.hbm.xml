@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/04/2015 11:11:08 PM by Hibernate Tools 3.2.1.GA -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/07/2015 2:16:48 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="dpocket.entity.Order" table="order" catalog="daigou">
+    <class name="dpocket.entity.Order" table="order" catalog="daigou" optimistic-lock="version">
         <id name="orderId" type="java.lang.Integer">
             <column name="order_id" />
             <generator class="identity" />
@@ -11,29 +11,35 @@
         <many-to-one name="customer" class="dpocket.entity.Customer" fetch="select">
             <column name="customer_id" not-null="true" />
         </many-to-one>
-        <property name="orderDate" type="timestamp">
-            <column name="order_date" length="19" not-null="true" />
+        <property name="orderPlacedDate" type="timestamp">
+            <column name="order_placed_date" length="19" not-null="true" />
+        </property>
+        <property name="active" type="boolean">
+            <column name="active" not-null="true" />
+        </property>
+        <property name="orderCompleteDate" type="timestamp">
+            <column name="order_complete_date" length="19" />
         </property>
         <property name="lastUpdate" type="timestamp">
             <column name="last_update" length="19" not-null="true" />
         </property>
-        <set name="orderProducts" inverse="true">
+        <set name="orderProducts" table="order_product" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="order_id" not-null="true" />
             </key>
             <one-to-many class="dpocket.entity.OrderProduct" />
         </set>
-        <set name="shippmentOrders" inverse="true">
+        <set name="orderPayments" table="order_payment" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="order_id" not-null="true" />
             </key>
-            <one-to-many class="dpocket.entity.ShippmentOrder" />
+            <one-to-many class="dpocket.entity.OrderPayment" />
         </set>
-        <set name="payments" inverse="true">
+        <set name="orderShippments" table="order_shippment" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="order_id" not-null="true" />
             </key>
-            <one-to-many class="dpocket.entity.Payment" />
+            <one-to-many class="dpocket.entity.OrderShippment" />
         </set>
     </class>
 </hibernate-mapping>

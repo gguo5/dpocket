@@ -1,5 +1,5 @@
 package dpocket.entity;
-// Generated 14/04/2015 11:11:08 PM by Hibernate Tools 3.2.1.GA
+// Generated 15/07/2015 2:16:48 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,6 +14,7 @@ public class Category  implements java.io.Serializable {
 
      private Byte categoryId;
      private String categoryName;
+     private char archvFlag;
      private Date lastUpdate;
      private Set products = new HashSet(0);
 
@@ -21,12 +22,14 @@ public class Category  implements java.io.Serializable {
     }
 
 	
-    public Category(String categoryName, Date lastUpdate) {
+    public Category(String categoryName, char archvFlag, Date lastUpdate) {
         this.categoryName = categoryName;
+        this.archvFlag = archvFlag;
         this.lastUpdate = lastUpdate;
     }
-    public Category(String categoryName, Date lastUpdate, Set products) {
+    public Category(String categoryName, char archvFlag, Date lastUpdate, Set products) {
        this.categoryName = categoryName;
+       this.archvFlag = archvFlag;
        this.lastUpdate = lastUpdate;
        this.products = products;
     }
@@ -44,6 +47,13 @@ public class Category  implements java.io.Serializable {
     
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+    public char getArchvFlag() {
+        return this.archvFlag;
+    }
+    
+    public void setArchvFlag(char archvFlag) {
+        this.archvFlag = archvFlag;
     }
     public Date getLastUpdate() {
         return this.lastUpdate;

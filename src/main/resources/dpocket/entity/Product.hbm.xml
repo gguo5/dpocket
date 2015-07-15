@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/04/2015 11:11:08 PM by Hibernate Tools 3.2.1.GA -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/07/2015 2:16:48 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="dpocket.entity.Product" table="product" catalog="daigou">
+    <class name="dpocket.entity.Product" table="product" catalog="daigou" optimistic-lock="version">
         <id name="productId" type="java.lang.Short">
             <column name="product_id" />
             <generator class="identity" />
@@ -32,16 +32,19 @@
         <property name="notes" type="string">
             <column name="notes" length="65535" />
         </property>
+        <property name="archvFlag" type="char">
+            <column name="archv_flag" length="1" not-null="true" />
+        </property>
         <property name="lastUpdate" type="timestamp">
             <column name="last_update" length="19" not-null="true" />
         </property>
-        <set name="orderProducts" inverse="true">
+        <set name="orderProducts" table="order_product" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="product_id" not-null="true" />
             </key>
             <one-to-many class="dpocket.entity.OrderProduct" />
         </set>
-        <set name="productProcurements" inverse="true">
+        <set name="productProcurements" table="product_procurement" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="product_id" not-null="true" />
             </key>

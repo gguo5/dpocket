@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/07/2015 2:16:48 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="dpocket.entity.OrderShippment" table="order_shippment" catalog="daigou" optimistic-lock="version">
+        <id name="orderShippmentId" type="java.lang.Short">
+            <column name="order_shippment_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="order" class="dpocket.entity.Order" fetch="select">
+            <column name="order_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="shippment" class="dpocket.entity.Shippment" fetch="select">
+            <column name="shippment_id" not-null="true" />
+        </many-to-one>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

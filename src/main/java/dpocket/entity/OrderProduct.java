@@ -1,5 +1,5 @@
 package dpocket.entity;
-// Generated 14/04/2015 11:11:08 PM by Hibernate Tools 3.2.1.GA
+// Generated 15/07/2015 2:16:48 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -12,8 +12,8 @@ public class OrderProduct  implements java.io.Serializable {
 
 
      private OrderProductId id;
-     private Product product;
      private Order order;
+     private Product product;
      private Short quantity;
      private BigDecimal unitPrice;
      private Date lastUpdate;
@@ -22,16 +22,16 @@ public class OrderProduct  implements java.io.Serializable {
     }
 
 	
-    public OrderProduct(OrderProductId id, Product product, Order order, Date lastUpdate) {
+    public OrderProduct(OrderProductId id, Order order, Product product, Date lastUpdate) {
         this.id = id;
-        this.product = product;
         this.order = order;
+        this.product = product;
         this.lastUpdate = lastUpdate;
     }
-    public OrderProduct(OrderProductId id, Product product, Order order, Short quantity, BigDecimal unitPrice, Date lastUpdate) {
+    public OrderProduct(OrderProductId id, Order order, Product product, Short quantity, BigDecimal unitPrice, Date lastUpdate) {
        this.id = id;
-       this.product = product;
        this.order = order;
+       this.product = product;
        this.quantity = quantity;
        this.unitPrice = unitPrice;
        this.lastUpdate = lastUpdate;
@@ -44,19 +44,19 @@ public class OrderProduct  implements java.io.Serializable {
     public void setId(OrderProductId id) {
         this.id = id;
     }
-    public Product getProduct() {
-        return this.product;
-    }
-    
-    public void setProduct(Product product) {
-        this.product = product;
-    }
     public Order getOrder() {
         return this.order;
     }
     
     public void setOrder(Order order) {
         this.order = order;
+    }
+    public Product getProduct() {
+        return this.product;
+    }
+    
+    public void setProduct(Product product) {
+        this.product = product;
     }
     public Short getQuantity() {
         return this.quantity;

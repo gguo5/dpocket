@@ -1,5 +1,5 @@
 package dpocket.entity;
-// Generated 14/04/2015 11:11:08 PM by Hibernate Tools 3.2.1.GA
+// Generated 15/07/2015 2:16:48 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -13,33 +13,33 @@ public class Customer  implements java.io.Serializable {
 
 
      private Short customerId;
-     private Card card;
      private String customerName;
      private String email;
      private boolean active;
      private Date createDate;
      private Date lastUpdate;
      private Set addresses = new HashSet(0);
+     private Set cards = new HashSet(0);
      private Set orders = new HashSet(0);
 
     public Customer() {
     }
 
 	
-    public Customer(Card card, String customerName, boolean active, Date createDate) {
-        this.card = card;
+    public Customer(String customerName, boolean active, Date createDate, Date lastUpdate) {
         this.customerName = customerName;
         this.active = active;
         this.createDate = createDate;
+        this.lastUpdate = lastUpdate;
     }
-    public Customer(Card card, String customerName, String email, boolean active, Date createDate, Date lastUpdate, Set addresses, Set orders) {
-       this.card = card;
+    public Customer(String customerName, String email, boolean active, Date createDate, Date lastUpdate, Set addresses, Set cards, Set orders) {
        this.customerName = customerName;
        this.email = email;
        this.active = active;
        this.createDate = createDate;
        this.lastUpdate = lastUpdate;
        this.addresses = addresses;
+       this.cards = cards;
        this.orders = orders;
     }
    
@@ -49,13 +49,6 @@ public class Customer  implements java.io.Serializable {
     
     public void setCustomerId(Short customerId) {
         this.customerId = customerId;
-    }
-    public Card getCard() {
-        return this.card;
-    }
-    
-    public void setCard(Card card) {
-        this.card = card;
     }
     public String getCustomerName() {
         return this.customerName;
@@ -98,6 +91,13 @@ public class Customer  implements java.io.Serializable {
     
     public void setAddresses(Set addresses) {
         this.addresses = addresses;
+    }
+    public Set getCards() {
+        return this.cards;
+    }
+    
+    public void setCards(Set cards) {
+        this.cards = cards;
     }
     public Set getOrders() {
         return this.orders;

@@ -1,5 +1,5 @@
 package dpocket.entity;
-// Generated 14/04/2015 11:11:08 PM by Hibernate Tools 3.2.1.GA
+// Generated 15/07/2015 2:16:48 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -22,6 +22,7 @@ public class Product  implements java.io.Serializable {
      private BigDecimal weight;
      private BigDecimal shippmentCost;
      private String notes;
+     private char archvFlag;
      private Date lastUpdate;
      private Set orderProducts = new HashSet(0);
      private Set productProcurements = new HashSet(0);
@@ -30,12 +31,13 @@ public class Product  implements java.io.Serializable {
     }
 
 	
-    public Product(Category category, String productName, Date lastUpdate) {
+    public Product(Category category, String productName, char archvFlag, Date lastUpdate) {
         this.category = category;
         this.productName = productName;
+        this.archvFlag = archvFlag;
         this.lastUpdate = lastUpdate;
     }
-    public Product(Category category, String productName, String description, String size, BigDecimal price, BigDecimal weight, BigDecimal shippmentCost, String notes, Date lastUpdate, Set orderProducts, Set productProcurements) {
+    public Product(Category category, String productName, String description, String size, BigDecimal price, BigDecimal weight, BigDecimal shippmentCost, String notes, char archvFlag, Date lastUpdate, Set orderProducts, Set productProcurements) {
        this.category = category;
        this.productName = productName;
        this.description = description;
@@ -44,6 +46,7 @@ public class Product  implements java.io.Serializable {
        this.weight = weight;
        this.shippmentCost = shippmentCost;
        this.notes = notes;
+       this.archvFlag = archvFlag;
        this.lastUpdate = lastUpdate;
        this.orderProducts = orderProducts;
        this.productProcurements = productProcurements;
@@ -111,6 +114,13 @@ public class Product  implements java.io.Serializable {
     
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+    public char getArchvFlag() {
+        return this.archvFlag;
+    }
+    
+    public void setArchvFlag(char archvFlag) {
+        this.archvFlag = archvFlag;
     }
     public Date getLastUpdate() {
         return this.lastUpdate;

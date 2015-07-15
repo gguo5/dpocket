@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/07/2015 2:16:48 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="dpocket.entity.TrackingApi" table="tracking_api" catalog="daigou" optimistic-lock="version">
+        <id name="apiId" type="java.lang.Short">
+            <column name="api_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="logistics" class="dpocket.entity.Logistics" fetch="select">
+            <column name="company_id" not-null="true" />
+        </many-to-one>
+        <property name="baseUrl" type="string">
+            <column name="base_url" not-null="true" />
+        </property>
+        <property name="limit" type="short">
+            <column name="limit" not-null="true" />
+        </property>
+        <property name="active" type="boolean">
+            <column name="active" not-null="true" />
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" not-null="true" />
+        </property>
+        <set name="trackingApiParamses" table="tracking_api_params" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="api_id" not-null="true" />
+            </key>
+            <one-to-many class="dpocket.entity.TrackingApiParams" />
+        </set>
+    </class>
+</hibernate-mapping>
