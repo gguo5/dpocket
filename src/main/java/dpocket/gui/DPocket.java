@@ -13,11 +13,10 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import dpocket.entity.*;
 import java.awt.Cursor;
-import java.io.File;
-import java.net.URL;
-import java.util.ArrayList;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import org.apache.log4j.Logger;
 
@@ -25,16 +24,17 @@ import org.apache.log4j.Logger;
  *
  * @author Grant
  */
-public class MainFrame extends javax.swing.JFrame {
+public class DPocket extends javax.swing.JFrame {
 
-    final static Logger logger = Logger.getLogger(MainFrame.class.getName());
+    final static Logger logger = Logger.getLogger(DPocket.class.getName());
 
     /**
      * Creates new form MainFrame
      */
-    public MainFrame() {
+    public DPocket() {
         initComponents();
-        populateOpenOrder();
+        populateUnshipped();
+        populateOrders();
     }
 
     /**
@@ -46,20 +46,34 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_OpenOrder = new javax.swing.JTable();
-        btn_refresh = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        split_main = new javax.swing.JSplitPane();
+        split_display = new javax.swing.JSplitPane();
+        jsp_shippment = new javax.swing.JScrollPane();
+        tbl_tracking = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jToolBar2 = new javax.swing.JToolBar();
+        lbl_btn_cust1 = new javax.swing.JLabel();
         lbl_btn_cust = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jm_main = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menu_exit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dora Pocket Management System");
+        setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\gguo\\Documents\\NetBeansProjects\\dpocket\\src\\main\\resources\\dpocket\\icons\\icon.png"));
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
-        tbl_OpenOrder.setModel(new javax.swing.table.DefaultTableModel(
+        split_main.setDividerLocation(60);
+
+        split_display.setDividerLocation(300);
+        split_display.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        jsp_shippment.setMinimumSize(new java.awt.Dimension(300, 100));
+
+        tbl_tracking.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -70,17 +84,38 @@ public class MainFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tbl_OpenOrder);
+        tbl_tracking.setMinimumSize(new java.awt.Dimension(60, 200));
+        tbl_tracking.setPreferredSize(new java.awt.Dimension(300, 200));
+        jsp_shippment.setViewportView(tbl_tracking);
 
-        btn_refresh.setText("Refresh");
-        btn_refresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_refreshActionPerformed(evt);
+        split_display.setLeftComponent(jsp_shippment);
+
+        jScrollPane2.setMinimumSize(new java.awt.Dimension(23, 100));
+        split_display.setRightComponent(jScrollPane2);
+
+        split_main.setRightComponent(split_display);
+
+        jToolBar2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jToolBar2.setRollover(true);
+        jToolBar2.setMargin(new java.awt.Insets(0, 0, 5, 0));
+        jToolBar2.setMaximumSize(new java.awt.Dimension(200, 100));
+        jToolBar2.setMinimumSize(new java.awt.Dimension(30, 13));
+
+        lbl_btn_cust1.setIcon(new javax.swing.ImageIcon("C:\\Users\\gguo\\Documents\\NetBeansProjects\\dpocket\\src\\main\\resources\\dpocket\\icons\\Order-Tracking.png")); // NOI18N
+        lbl_btn_cust1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_btn_cust1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lbl_btn_cust1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lbl_btn_cust1MouseExited(evt);
             }
         });
+        jToolBar2.add(lbl_btn_cust1);
 
         lbl_btn_cust.setIcon(new javax.swing.ImageIcon("C:\\Users\\gguo\\Documents\\NetBeansProjects\\DPocket\\src\\main\\resources\\dpocket\\icons\\customers.png")); // NOI18N
-        lbl_btn_cust.setText("Customers");
         lbl_btn_cust.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbl_btn_custMouseClicked(evt);
@@ -92,22 +127,13 @@ public class MainFrame extends javax.swing.JFrame {
                 lbl_btn_custMouseExited(evt);
             }
         });
+        jToolBar2.add(lbl_btn_cust);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(lbl_btn_cust, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(lbl_btn_cust, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        split_main.setLeftComponent(jToolBar2);
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(23, 50));
+        jScrollPane1.setViewportView(jScrollPane3);
 
         jMenu1.setMnemonic('F');
         jMenu1.setText("File");
@@ -121,46 +147,33 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jMenu1.add(menu_exit);
 
-        jMenuBar1.add(jMenu1);
+        jm_main.add(jMenu1);
 
         jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        jm_main.add(jMenu2);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jm_main);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
-                    .addComponent(btn_refresh)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(119, Short.MAX_VALUE))
+            .addComponent(split_main, javax.swing.GroupLayout.DEFAULT_SIZE, 1465, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_refresh)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(split_main, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btn_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshActionPerformed
-        // TODO add your handling code here:
-        populateOpenOrder();
-
-    }//GEN-LAST:event_btn_refreshActionPerformed
 
     private void lbl_btn_custMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_btn_custMouseClicked
         // TODO add your handling code here:
@@ -186,6 +199,18 @@ public class MainFrame extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_menu_exitActionPerformed
 
+    private void lbl_btn_cust1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_btn_cust1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl_btn_cust1MouseClicked
+
+    private void lbl_btn_cust1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_btn_cust1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl_btn_cust1MouseEntered
+
+    private void lbl_btn_cust1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_btn_cust1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl_btn_cust1MouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -203,33 +228,39 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DPocket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DPocket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DPocket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DPocket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+                new DPocket().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_refresh;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JToolBar jToolBar2;
+    private javax.swing.JMenuBar jm_main;
+    private javax.swing.JScrollPane jsp_shippment;
     private javax.swing.JLabel lbl_btn_cust;
+    private javax.swing.JLabel lbl_btn_cust1;
     private javax.swing.JMenuItem menu_exit;
-    private javax.swing.JTable tbl_OpenOrder;
+    private javax.swing.JSplitPane split_display;
+    private javax.swing.JSplitPane split_main;
+    private javax.swing.JTable tbl_tracking;
     // End of variables declaration//GEN-END:variables
 
     private static String QUERY_TBL_TRACKING = "from Shippment as sp\n"
@@ -237,9 +268,8 @@ public class MainFrame extends javax.swing.JFrame {
             + "join fetch os.order as o\n"
             + "left join fetch o.customer as c";
 
-    private void populateOpenOrder() {
+    private void populateUnshipped() {
         executeHQLQuery(QUERY_TBL_TRACKING);
-
     }
 
     private void executeHQLQuery(String hql) {
@@ -291,7 +321,11 @@ public class MainFrame extends javax.swing.JFrame {
             //System.out.println(pair[1] + "\n");
 
         }
-        tbl_OpenOrder.setModel(new DefaultTableModel(tableData, tableHeaders));
+        tbl_tracking.setModel(new DefaultTableModel(tableData, tableHeaders));
 
+    }
+
+    private void populateOrders() {
+        
     }
 }
